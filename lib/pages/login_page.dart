@@ -66,6 +66,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 25),
               MyButton(
                 onTap: () {},
+                text: "Submit",
               ),
               const SizedBox(height: 50),
               // signIn with google, apple buttons
