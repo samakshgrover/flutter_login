@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/pages/digital_will.dart';
+import 'package:flutter_login/pages/digital_will_hooks.dart';
 // import 'package:flutter_login/pages/login_page.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: LoginPage(),
       home: DigitalWill(),

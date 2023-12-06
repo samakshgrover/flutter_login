@@ -9,15 +9,15 @@ class GetAllCategoryResponse {
     isValid = json['isValid'];
     message = json['message'];
     assets =
-        json['assets'] != null ? new Assets.fromJson(json['assets']) : null;
+        json['assets'] != null ? Assets.fromJson(json['assets']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isValid'] = this.isValid;
-    data['message'] = this.message;
-    if (this.assets != null) {
-      data['assets'] = this.assets!.toJson();
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['isValid'] = isValid;
+    data['message'] = message;
+    if (assets != null) {
+      data['assets'] = assets!.toJson();
     }
     return data;
   }
@@ -63,160 +63,160 @@ class Assets {
     if (json['Mutual Fund'] != null) {
       mutualFund = <MutualFund>[];
       json['Mutual Fund'].forEach((v) {
-        mutualFund!.add(new MutualFund.fromJson(v));
+        mutualFund!.add(MutualFund.fromJson(v));
       });
     }
     if (json['Stock Brokers'] != null) {
       stockBrokers = <StockBrokers>[];
       json['Stock Brokers'].forEach((v) {
-        stockBrokers!.add(new StockBrokers.fromJson(v));
+        stockBrokers!.add(StockBrokers.fromJson(v));
       });
     }
     if (json['Bank Account'] != null) {
       bankAccount = <BankAccount>[];
       json['Bank Account'].forEach((v) {
-        bankAccount!.add(new BankAccount.fromJson(v));
+        bankAccount!.add(BankAccount.fromJson(v));
       });
     }
     if (json['Life Insurance'] != null) {
       lifeInsurance = <LifeInsurance>[];
       json['Life Insurance'].forEach((v) {
-        lifeInsurance!.add(new LifeInsurance.fromJson(v));
+        lifeInsurance!.add(LifeInsurance.fromJson(v));
       });
     }
     if (json['Non-Life Insurance'] != null) {
       nonLifeInsurance = <NonLifeInsurance>[];
       json['Non-Life Insurance'].forEach((v) {
-        nonLifeInsurance!.add(new NonLifeInsurance.fromJson(v));
+        nonLifeInsurance!.add(NonLifeInsurance.fromJson(v));
       });
     }
     if (json['Crypto Exchanges'] != null) {
       cryptoExchanges = <CryptoExchanges>[];
       json['Crypto Exchanges'].forEach((v) {
-        cryptoExchanges!.add(new CryptoExchanges.fromJson(v));
+        cryptoExchanges!.add(CryptoExchanges.fromJson(v));
       });
     }
     if (json['National Pension Scheme (NPS)'] != null) {
       nationalPensionSchemeNPS = <NationalPensionSchemeNPS>[];
       json['National Pension Scheme (NPS)'].forEach((v) {
-        nationalPensionSchemeNPS!.add(new NationalPensionSchemeNPS.fromJson(v));
+        nationalPensionSchemeNPS!.add(NationalPensionSchemeNPS.fromJson(v));
       });
     }
     if (json['PF'] != null) {
       pF = <PF>[];
       json['PF'].forEach((v) {
-        pF!.add(new PF.fromJson(v));
+        pF!.add(PF.fromJson(v));
       });
     }
     if (json['PPF'] != null) {
       pPF = <PPF>[];
       json['PPF'].forEach((v) {
-        pPF!.add(new PPF.fromJson(v));
+        pPF!.add(PPF.fromJson(v));
       });
     }
     if (json['Post Office Account'] != null) {
       postOfficeAccount = <PostOfficeAccount>[];
       json['Post Office Account'].forEach((v) {
-        postOfficeAccount!.add(new PostOfficeAccount.fromJson(v));
+        postOfficeAccount!.add(PostOfficeAccount.fromJson(v));
       });
     }
     if (json['Land/Property/Flats'] != null) {
       landPropertyFlats = <LandPropertyFlats>[];
       json['Land/Property/Flats'].forEach((v) {
-        landPropertyFlats!.add(new LandPropertyFlats.fromJson(v));
+        landPropertyFlats!.add(LandPropertyFlats.fromJson(v));
       });
     }
     if (json['Any Loan Given to anyone'] != null) {
       anyLoanGivenToAnyone = <AnyLoanGivenToAnyone>[];
       json['Any Loan Given to anyone'].forEach((v) {
-        anyLoanGivenToAnyone!.add(new AnyLoanGivenToAnyone.fromJson(v));
+        anyLoanGivenToAnyone!.add(AnyLoanGivenToAnyone.fromJson(v));
       });
     }
     if (json['Vehicle'] != null) {
       vehicle = <Vehicle>[];
       json['Vehicle'].forEach((v) {
-        vehicle!.add(new Vehicle.fromJson(v));
+        vehicle!.add(Vehicle.fromJson(v));
       });
     }
     if (json['Gold/Ornaments'] != null) {
       goldOrnaments = <GoldOrnaments>[];
       json['Gold/Ornaments'].forEach((v) {
-        goldOrnaments!.add(new GoldOrnaments.fromJson(v));
+        goldOrnaments!.add(GoldOrnaments.fromJson(v));
       });
     }
     if (json['Anything else'] != null) {
       anythingElse = <AnythingElse>[];
       json['Anything else'].forEach((v) {
-        anythingElse!.add(new AnythingElse.fromJson(v));
+        anythingElse!.add(AnythingElse.fromJson(v));
       });
     }
     if (json['GENERAL'] != null) {
       gENERAL = <GENERAL>[];
       json['GENERAL'].forEach((v) {
-        gENERAL!.add(new GENERAL.fromJson(v));
+        gENERAL!.add(GENERAL.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.mutualFund != null) {
-      data['Mutual Fund'] = this.mutualFund!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (mutualFund != null) {
+      data['Mutual Fund'] = mutualFund!.map((v) => v.toJson()).toList();
     }
-    if (this.stockBrokers != null) {
+    if (stockBrokers != null) {
       data['Stock Brokers'] =
-          this.stockBrokers!.map((v) => v.toJson()).toList();
+          stockBrokers!.map((v) => v.toJson()).toList();
     }
-    if (this.bankAccount != null) {
-      data['Bank Account'] = this.bankAccount!.map((v) => v.toJson()).toList();
+    if (bankAccount != null) {
+      data['Bank Account'] = bankAccount!.map((v) => v.toJson()).toList();
     }
-    if (this.lifeInsurance != null) {
+    if (lifeInsurance != null) {
       data['Life Insurance'] =
-          this.lifeInsurance!.map((v) => v.toJson()).toList();
+          lifeInsurance!.map((v) => v.toJson()).toList();
     }
-    if (this.nonLifeInsurance != null) {
+    if (nonLifeInsurance != null) {
       data['Non-Life Insurance'] =
-          this.nonLifeInsurance!.map((v) => v.toJson()).toList();
+          nonLifeInsurance!.map((v) => v.toJson()).toList();
     }
-    if (this.cryptoExchanges != null) {
+    if (cryptoExchanges != null) {
       data['Crypto Exchanges'] =
-          this.cryptoExchanges!.map((v) => v.toJson()).toList();
+          cryptoExchanges!.map((v) => v.toJson()).toList();
     }
-    if (this.nationalPensionSchemeNPS != null) {
+    if (nationalPensionSchemeNPS != null) {
       data['National Pension Scheme (NPS)'] =
-          this.nationalPensionSchemeNPS!.map((v) => v.toJson()).toList();
+          nationalPensionSchemeNPS!.map((v) => v.toJson()).toList();
     }
-    if (this.pF != null) {
-      data['PF'] = this.pF!.map((v) => v.toJson()).toList();
+    if (pF != null) {
+      data['PF'] = pF!.map((v) => v.toJson()).toList();
     }
-    if (this.pPF != null) {
-      data['PPF'] = this.pPF!.map((v) => v.toJson()).toList();
+    if (pPF != null) {
+      data['PPF'] = pPF!.map((v) => v.toJson()).toList();
     }
-    if (this.postOfficeAccount != null) {
+    if (postOfficeAccount != null) {
       data['Post Office Account'] =
-          this.postOfficeAccount!.map((v) => v.toJson()).toList();
+          postOfficeAccount!.map((v) => v.toJson()).toList();
     }
-    if (this.landPropertyFlats != null) {
+    if (landPropertyFlats != null) {
       data['Land/Property/Flats'] =
-          this.landPropertyFlats!.map((v) => v.toJson()).toList();
+          landPropertyFlats!.map((v) => v.toJson()).toList();
     }
-    if (this.anyLoanGivenToAnyone != null) {
+    if (anyLoanGivenToAnyone != null) {
       data['Any Loan Given to anyone'] =
-          this.anyLoanGivenToAnyone!.map((v) => v.toJson()).toList();
+          anyLoanGivenToAnyone!.map((v) => v.toJson()).toList();
     }
-    if (this.vehicle != null) {
-      data['Vehicle'] = this.vehicle!.map((v) => v.toJson()).toList();
+    if (vehicle != null) {
+      data['Vehicle'] = vehicle!.map((v) => v.toJson()).toList();
     }
-    if (this.goldOrnaments != null) {
+    if (goldOrnaments != null) {
       data['Gold/Ornaments'] =
-          this.goldOrnaments!.map((v) => v.toJson()).toList();
+          goldOrnaments!.map((v) => v.toJson()).toList();
     }
-    if (this.anythingElse != null) {
+    if (anythingElse != null) {
       data['Anything else'] =
-          this.anythingElse!.map((v) => v.toJson()).toList();
+          anythingElse!.map((v) => v.toJson()).toList();
     }
-    if (this.gENERAL != null) {
-      data['GENERAL'] = this.gENERAL!.map((v) => v.toJson()).toList();
+    if (gENERAL != null) {
+      data['GENERAL'] = gENERAL!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -235,17 +235,17 @@ class StockBrokers {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -264,17 +264,17 @@ class BankAccount {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -293,17 +293,17 @@ class MutualFund {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -322,17 +322,17 @@ class LifeInsurance {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -351,17 +351,17 @@ class NonLifeInsurance {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -380,17 +380,17 @@ class CryptoExchanges {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -409,17 +409,17 @@ class NationalPensionSchemeNPS {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -438,17 +438,17 @@ class PF {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -467,17 +467,17 @@ class PPF {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -496,17 +496,17 @@ class PostOfficeAccount {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -525,17 +525,17 @@ class LandPropertyFlats {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -554,17 +554,17 @@ class AnyLoanGivenToAnyone {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -583,17 +583,17 @@ class Vehicle {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -612,17 +612,17 @@ class GoldOrnaments {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -641,17 +641,17 @@ class AnythingElse {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -670,17 +670,17 @@ class GENERAL {
     if (json['assetsList'] != null) {
       assetsList = <AssetsList>[];
       json['assetsList'].forEach((v) {
-        assetsList!.add(new AssetsList.fromJson(v));
+        assetsList!.add(AssetsList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['uamId'] = this.uamId;
-    if (this.assetsList != null) {
-      data['assetsList'] = this.assetsList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['uamId'] = uamId;
+    if (assetsList != null) {
+      data['assetsList'] = assetsList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -712,13 +712,13 @@ class AssetsList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['label'] = this.label;
-    data['categoryName'] = this.categoryName;
-    data['value'] = this.value;
-    data['assetSubId'] = this.assetSubId;
-    data['userAssetMapId'] = this.userAssetMapId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['label'] = label;
+    data['categoryName'] = categoryName;
+    data['value'] = value;
+    data['assetSubId'] = assetSubId;
+    data['userAssetMapId'] = userAssetMapId;
     return data;
   }
 }

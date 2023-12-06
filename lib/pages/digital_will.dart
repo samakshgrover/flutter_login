@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_login/components/my_button.dart';
+import 'package:flutter_login/components/no_asset.dart';
 import 'package:flutter_login/components/will_asset_list.dart';
 import 'package:flutter_login/components/will_item.dart';
 import 'package:flutter_login/Observable/observable_state.dart';
@@ -17,19 +18,12 @@ class DigitalWill extends StatefulWidget {
 }
 
 class _DigitalWillState extends State<DigitalWill> {
-  late GetAllCategoryResponse? assets;
-  late GetNomineeResponse? nominees;
-  
+  GetAllCategoryResponse? assets;
+  GetNomineeResponse? nominees;
 
   @override
   void initState() {
     super.initState();
-    (() async {
-      assets = await getAllAssets();
-      nominees = await getAllNominees();
-      print(jsonEncode(assets));
-      print(jsonEncode(nominees));
-    })();
   }
 
   @override
@@ -51,10 +45,22 @@ class _DigitalWillState extends State<DigitalWill> {
               ),
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
-                      // border: Border.all(width: 0),
-                      ),
-                  child: WillAssetList(willObservable: willObservable),
+                  decoration: BoxDecoration(),
+                  child: (() {
+                    if (assets != null) {
+                      print("Not Null block");
+                      if (assets!.assets!.toJson().isEmpty) {
+                        print("Asset empty block");
+                        return NoAsset();
+                      } else {
+                        print("Assets block");
+                        WillAssetList(willObservable: willObservable);
+                      }
+                    } else {
+                      print("Null block");
+                      return NoAsset();
+                    }
+                  }()),
                 ),
               ),
               const SizedBox(height: 50),

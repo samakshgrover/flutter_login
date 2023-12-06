@@ -1,51 +1,169 @@
+// import 'dart:html';
+// import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_login/components/my_button.dart';
 import 'package:flutter_login/components/nominee_item.dart';
 import 'package:flutter_login/observable/observable_state.dart';
 
-class WillItem extends StatefulWidget {
-  WillItem({super.key, required this.observable, this.localState});
-  var observable;
-  var localState;
+class NumberRangeTextInputFormatter extends TextInputFormatter {
+  final int min;
+  final int max;
+
+  NumberRangeTextInputFormatter({
+    required this.min,
+    required this.max,
+  });
 
   @override
-  State<WillItem> createState() =>
-      _WillItemState(observable: observable, localState: localState);
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    try {
+      final inputNumber = newValue.text.isEmpty ? 0 : int.parse(newValue.text);
+      // final inputNumber = int.parse(newValue.text);
+      if (inputNumber >= min && inputNumber <= max) {
+        // return newValue;
+        return TextEditingValue(
+          text: inputNumber.toString(),
+          selection: newValue.selection,
+        );
+      }
+    } catch (e) {
+      // Handle the exception if parsing fails
+      print(e);
+    }
+
+    // Return the old value if the input is not within the range
+    return oldValue;
+  }
 }
 
-class _WillItemState extends State<WillItem> {
-  _WillItemState({required this.observable, this.localState});
-  var observable;
-  var localState;
-  var unsubscribe;
+class WillItem extends HookWidget {
+  const WillItem({
+    super.key,
+    required this.observable,
+    required this.nominees,
+    required this.asset,
+  });
 
-  final List<Widget> _nominees = [
-    NomineeItem(),
-    NomineeItem(),
-    NomineeItem(),
-  ];
-
-  void fn(state, setState) {
-    var newState = [...state, localState];
-    setState(newState);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    unsubscribe = observable.subscribe(fn);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    unsubscribe();
-  }
+  final observable;
+  final List<dynamic> nominees;
+  final Map<String, dynamic> asset;
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final assetName = useState("");
+    final assetNumber = useState("");
+    final assetId = useState(0);
+    final nomineeShares = useState([]);
+    final nomineeWidgetList = useState<List<Widget>>([]);
+
+    //   {
+    //    uamId: number
+    //     nominees: [
+    //      {
+    //        nomineeId: number
+    //        share: number
+    //      }]
+    //   }
+
+    final manageState = useCallback((state, setState) {
+      print("=" * 100);
+      print("One--");
+      Map<String, Object>? localState = {
+        "uamId": assetId.value,
+        "nominees": nomineeShares.value
+      };
+
+      // var total = nomineeShares.value.fold(0,
+      //     (previousValue, element){
+      //       var share = element["share"];
+      //       if(share.runtimeType == String){
+      //         share = int.parse(element["share"]);
+      //       }
+      //       print("four --");
+      //       print(share.runtimeType);
+      //       return previousValue + element["share"] as int;
+      //     });
+
+      // print("Two--");
+
+      // if (total == 0) {
+      //   localState = null;
+      // } else if (total != 100) {
+      //   // TODO: show error
+      // }
+
+      var newState = [...state, localState];
+      setState(newState);
+      print("three");
+    }, []);
+
+    useEffect(() {
+      return observable.subscribe(manageState);
+    }, []);
+
+    useEffect(() {
+      List<Widget> list = [];
+      for (var item in nominees) {
+        var nomineeState = {"id": item["id"], "share": 0};
+
+        nomineeShares.value = [...nomineeShares.value, nomineeState];
+
+        var widget = SizedBox(
+          height: 60,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  item["name"],
+                ),
+                Container(
+                  width: 60,
+                  decoration: BoxDecoration(),
+                  child: TextField(
+                    onChanged: (value) {
+                      nomineeState["share"] = value;
+                    },
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      // FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      NumberRangeTextInputFormatter(min: 0, max: 100),
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: TextEditingController.fromValue(
+                      TextEditingValue(text: '0'),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+        list.add(widget);
+        nomineeWidgetList.value = list;
+      }
+      return;
+    }, []);
+
+    useEffect(() {
+      assetName.value = asset["assetsList"].last["value"];
+      assetNumber.value = asset["assetsList"].first["value"];
+      assetId.value = int.parse(asset["uamId"]);
+      print(asset["uamId"]);
+      return;
+    });
 
     return Card(
       child: Container(
@@ -62,7 +180,7 @@ class _WillItemState extends State<WillItem> {
             children: [
               // asset heading
               Text(
-                "Bank Name",
+                assetName.value,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -72,47 +190,34 @@ class _WillItemState extends State<WillItem> {
 
               // asset description
               Text(
-                "Asset Identifier",
+                assetNumber.value,
                 style: TextStyle(color: Colors.grey.shade500),
               ),
 
               // nominees
               SizedBox(height: 20),
-              // Column(
-              //   children: [
-              //     Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //         Text('Nominee name'),
-              //         Text('Share'),
-              //       ],
-              //     ),
-              //     Divider(),
-              //     SizedBox(height: 20),
-              //   // ..._nominees
-              //   ],
-              // )
-              DataTable( columns: const [
-                DataColumn(label: Text('Nominee name')),
-                DataColumn(label: Text('Share')),
-              ], rows: const [
-                DataRow(cells: [
-                  DataCell(
-                    Text("Ramesh"),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('Nominee name'),
+                      Text('Share'),
+                    ],
                   ),
-                  DataCell(
-                    TextField(),
-                  )
-                ]),
-                DataRow(cells: [
-                  DataCell(
-                    Text("Ramesh"),
+                  Divider(),
+                  SizedBox(height: 20),
+                  Column(
+                    children: nomineeWidgetList.value,
                   ),
-                  DataCell(
-                    TextField(),
+                  GestureDetector(
+                    onTap: () {
+                      print(nomineeShares.value);
+                    },
+                    child: Text('Print state'),
                   )
-                ])
-              ])
+                ],
+              ),
             ],
           ),
         ),
@@ -120,15 +225,3 @@ class _WillItemState extends State<WillItem> {
     );
   }
 }
-
-/*
-
-Asset name
-Asset identifier
-
-nominee list  share
-nominee name
-nominee relation
-
- */
-
