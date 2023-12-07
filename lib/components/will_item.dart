@@ -62,6 +62,7 @@ class WillItem extends HookWidget {
     final assetId = useState(0);
     final nomineeShares = useState([]);
     final nomineeWidgetList = useState<List<Widget>>([]);
+    final showError = useState(false);
 
     //   {
     //    uamId: number
@@ -73,35 +74,13 @@ class WillItem extends HookWidget {
     //   }
 
     final manageState = useCallback((state, setState) {
-      print("=" * 100);
-      print("One--");
       Map<String, Object>? localState = {
         "uamId": assetId.value,
         "nominees": nomineeShares.value
       };
 
-      // var total = nomineeShares.value.fold(0,
-      //     (previousValue, element){
-      //       var share = element["share"];
-      //       if(share.runtimeType == String){
-      //         share = int.parse(element["share"]);
-      //       }
-      //       print("four --");
-      //       print(share.runtimeType);
-      //       return previousValue + element["share"] as int;
-      //     });
-
-      // print("Two--");
-
-      // if (total == 0) {
-      //   localState = null;
-      // } else if (total != 100) {
-      //   // TODO: show error
-      // }
-
       var newState = [...state, localState];
       setState(newState);
-      print("three");
     }, []);
 
     useEffect(() {
@@ -131,13 +110,17 @@ class WillItem extends HookWidget {
                   decoration: BoxDecoration(),
                   child: TextField(
                     onChanged: (value) {
-                      nomineeState["share"] = value;
+                      if (value.trim().isEmpty) {
+                        nomineeState["share"] = 0;
+                      } else {
+                        nomineeState["share"] = value;
+                      }
                     },
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                       // FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                      NumberRangeTextInputFormatter(min: 0, max: 100),
+                      // NumberRangeTextInputFormatter(min: 0, max: 100),
                     ],
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -161,14 +144,17 @@ class WillItem extends HookWidget {
       assetName.value = asset["assetsList"].last["value"];
       assetNumber.value = asset["assetsList"].first["value"];
       assetId.value = int.parse(asset["uamId"]);
-      print(asset["uamId"]);
+
       return;
     });
 
     return Card(
       child: Container(
-        color: Colors.white,
         width: screenWidth * .8,
+        decoration: BoxDecoration(
+          border: Border(),
+          color: showError.value ? Colors.red : Colors.white,
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -211,9 +197,7 @@ class WillItem extends HookWidget {
                     children: nomineeWidgetList.value,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      print(nomineeShares.value);
-                    },
+                    onTap: () {},
                     child: Text('Print state'),
                   )
                 ],

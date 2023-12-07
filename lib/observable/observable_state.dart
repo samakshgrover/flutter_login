@@ -41,16 +41,3 @@ class ObservableState {
     });
   }
 }
-
-void fn(state, setState) {
-  var localState;
-  // Check if local state is there
-  if (true) {
-    var newState = [...state, localState];
-    setState(newState);
-  } else {
-    var localState = null;
-    var newState = [...state, localState];
-    setState(newState);
-  }
-}
